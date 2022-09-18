@@ -19,7 +19,7 @@ export async function getTestByDiscipline(req:Request, res:Response) {
 
 export async function getTestByTeacher(req:Request, res:Response) {
 
-    const result = 'testesByTeacher'
+    const result = await testService.getTestsByTeacher();
     
     res.status(200).send(result);
 }
