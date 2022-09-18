@@ -2,13 +2,15 @@
   "name": "projeto20-repoprovas",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "commonjs",
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && npx prisma migrate deploy ",
+    "start": "node dist/src/app.js",
     "dev": "nodemon src/app.ts"
   },
   "keywords": [],
