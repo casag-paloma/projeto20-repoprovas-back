@@ -12,7 +12,7 @@ export async function createTest(req:Request, res:Response) {
 
 export async function getTestByDiscipline(req:Request, res:Response) {
 
-    const result = 'testesByDiscipline'
+    const result = await testService.getTestsByDiscipline();
     
     res.status(200).send(result);
 }

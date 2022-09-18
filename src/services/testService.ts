@@ -3,6 +3,7 @@ import * as categoryRepository from '../repositories/categoryRepository';
 import * as disciplineRepository from '../repositories/disciplineRepository'
 import * as teacherRepository from '../repositories/teacherRepository';
 import * as teacherDisciplineRepository from '../repositories/teacherDisciplineRepository'
+import * as termRepository from '../repositories/termRepository'
 
 import { ITestData, ITestSchema } from '../types/testTypes';
 
@@ -26,5 +27,13 @@ export async function createTest(testData: ITestSchema) {
     console.log(data);
 
     await testRepository.createTest(data);
+    
+}
+
+export async function getTestsByDiscipline() {
+
+    const result = await termRepository.getTestsByDisciplineAndTerm();
+
+    return result;
     
 }
