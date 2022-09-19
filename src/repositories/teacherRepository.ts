@@ -6,10 +6,7 @@ export async function getTeacherIdByName(teacherName:string) {
         select: { id: true}
         }
     ) 
-    console.log(teacherId);
-    if(!teacherId) throw {type: 'not_found', message: 'this teacher dont exist in the database'}
-    
-    return teacherId.id
+    return teacherId
 };
 
 export async function getTestsByTeachers() {

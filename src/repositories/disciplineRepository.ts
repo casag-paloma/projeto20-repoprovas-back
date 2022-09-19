@@ -6,8 +6,6 @@ export async function getDisciplineIdByName(disciplineName:string) {
         select: { id: true}
         }
     ) 
-    console.log(disciplineId);
-    if(!disciplineId) throw {type: 'not_found', message: 'this discipline dont exist in the database'}
     
-    return disciplineId.id
+    return disciplineId
 }

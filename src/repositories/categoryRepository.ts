@@ -6,8 +6,6 @@ export async function getCategoryIdByName(categoryName:string) {
         select: { id: true}
         }
     ) 
-    console.log(categoryId);
-    if(!categoryId) throw {type: 'not_found', message: 'this category dont exist in the database'}
     
-    return categoryId.id
+    return categoryId
 }

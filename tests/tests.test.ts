@@ -36,7 +36,6 @@ describe('Testa POST /signup', ()=>{
         await supertest(app).post('/signin').send(newUser);
         const result = await supertest(app).post('/signup').send(user);
         const countData = result.text.length;
-        console.log(result.body);
 
         expect(result.status).toBe(200);
         expect(countData).toBeGreaterThan(0);

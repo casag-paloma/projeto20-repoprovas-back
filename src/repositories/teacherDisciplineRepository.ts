@@ -6,8 +6,5 @@ export async function getTeacherDisciplineId(teacherId:number, disciplineId: num
         select: { id: true}
         }
     ) 
-    console.log(teacherDisciplineId);
-    if(!teacherDisciplineId) throw {type: 'not_found', message: 'this teacher dont teach this discipline'}
-    
-    return teacherDisciplineId.id
+    return teacherDisciplineId;
 }
