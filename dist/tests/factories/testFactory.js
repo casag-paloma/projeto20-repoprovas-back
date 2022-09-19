@@ -9,14 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTeacherDisciplineId = void 0;
-const database_1 = require("../database");
-function getTeacherDisciplineId(teacherId, disciplineId) {
+exports.testFactory = void 0;
+const faker_1 = require("@faker-js/faker");
+function testFactory() {
     return __awaiter(this, void 0, void 0, function* () {
-        const teacherDisciplineId = yield database_1.prisma.teacherDiscipline.findFirst({ where: { teacherId, disciplineId },
-            select: { id: true }
-        });
-        return teacherDisciplineId;
+        return {
+            "name": faker_1.faker.lorem.words(2),
+            "pdfUrl": faker_1.faker.internet.url()
+        };
     });
 }
-exports.getTeacherDisciplineId = getTeacherDisciplineId;
+exports.testFactory = testFactory;

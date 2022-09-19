@@ -16,10 +16,7 @@ function getCategoryIdByName(categoryName) {
         const categoryId = yield database_1.prisma.category.findUnique({ where: { name: categoryName },
             select: { id: true }
         });
-        console.log(categoryId);
-        if (!categoryId)
-            throw { type: 'not_found', message: 'this category dont exist in the database' };
-        return categoryId.id;
+        return categoryId;
     });
 }
 exports.getCategoryIdByName = getCategoryIdByName;

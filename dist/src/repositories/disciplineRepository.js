@@ -16,10 +16,7 @@ function getDisciplineIdByName(disciplineName) {
         const disciplineId = yield database_1.prisma.discipline.findUnique({ where: { name: disciplineName },
             select: { id: true }
         });
-        console.log(disciplineId);
-        if (!disciplineId)
-            throw { type: 'not_found', message: 'this discipline dont exist in the database' };
-        return disciplineId.id;
+        return disciplineId;
     });
 }
 exports.getDisciplineIdByName = getDisciplineIdByName;

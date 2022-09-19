@@ -41,18 +41,28 @@ const teacherDisciplineRepository = __importStar(require("../repositories/teache
 const termRepository = __importStar(require("../repositories/termRepository"));
 function createTest(testData) {
     return __awaiter(this, void 0, void 0, function* () {
-        const categoryId = yield categoryRepository.getCategoryIdByName(testData.category);
-        const disciplineId = yield disciplineRepository.getDisciplineIdByName(testData.discipline);
-        const teacherId = yield teacherRepository.getTeacherIdByName(testData.teacher);
-        console.log(categoryId, disciplineId, teacherId);
-        const teacherDisciplineId = yield teacherDisciplineRepository.getTeacherDisciplineId(teacherId, disciplineId);
+        const category = yield categoryRepository.getCategoryIdByName(testData.category);
+        if (!category)
+            throw { type: 'not_found', message: 'this category dont exist in the database' };
+        const discipline = yield disciplineRepository.getDisciplineIdByName(testData.discipline);
+        if (!discipline)
+            throw { type: 'not_found', message: 'this discipline dont exist in the database' };
+        const teacher = yield teacherRepository.getTeacherIdByName(testData.teacher);
+        if (!teacher)
+            throw { type: 'not_found', message: 'this teacher dont exist in the database' };
+        const categoryId = category.id;
+        const disciplineId = discipline.id;
+        const teacherId = teacher.id;
+        const teacherDiscipline = yield teacherDisciplineRepository.getTeacherDisciplineId(teacherId, disciplineId);
+        if (!teacherDiscipline)
+            throw { type: 'not_found', message: 'this teacher dont teach this discipline' };
+        const teacherDisciplineId = teacherDiscipline.id;
         const data = {
             name: testData.name,
             pdfUrl: testData.pdfUrl,
             categoryId,
             teacherDisciplineId
         };
-        console.log(data);
         yield testRepository.createTest(data);
     });
 }
